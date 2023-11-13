@@ -2,106 +2,25 @@
 <html>
 <head>
     <title>Airy linear wave animation</title>
-    <style>
-        /* Basic styling for canvas and inputs */
-        canvas {
-            border: 1px solid black;
-        }
-        .controls {
-            margin: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="controls">
-        <label for="a">a:</label>
-        <input type="number" id="a" value="0.1" step="0.01"><br>
-        <label for="k">k:</label>
-        <input type="number" id="k" value="2" step="0.2"><br>
-        <label for="h">h:</label>
-        <input type="number" id="h" value="0.6" step="0.1"><br>
-        <label for="g">g:</label>
-        <input type="number" id="g" value="9.8" step="0.1"><br>
-        <label for="gridSpacing">Grid Spacing:</label>
-        <input type="number" id="gridSpacing" value="0.06" step="0.01"><br>        
-    </div>
+    <form id="waveControls" class="controls">
+        <fieldset>
+            <legend>Wave Parameters</legend>
+            <label for="a">a:</label>
+            <input type="number" id="a" value="0.1" step="0.01"><br>
+            <label for="k">k:</label>
+            <input type="number" id="k" value="2" step="0.2"><br>
+            <label for="h">h:</label>
+            <input type="number" id="h" value="0.6" step="0.1"><br>
+            <label for="g">g:</label>
+            <input type="number" id="g" value="9.8" step="0.1"><br>
+            <label for="gridSpacing">Grid Spacing:</label>
+            <input type="number" id="gridSpacing" value="0.06" step="0.01"><br>
+        </fieldset>        
+    </form>
     <canvas id="waveCanvas" width="600" height="400"></canvas>
-
-    <script>
-
-// Get canvas and context
-const canvas = document.getElementById('waveCanvas');
-const ctx = canvas.getContext('2d');
-
-// Parameters
-let a = parseFloat(document.getElementById('a').value);
-let k = parseFloat(document.getElementById('k').value);
-let h = parseFloat(document.getElementById('h').value);
-let g = parseFloat(document.getElementById('g').value);
-let gridSpacing = parseFloat(document.getElementById('gridSpacing').value);
-let w = Math.sqrt(g * k * Math.tanh(k * h));
-
-// Global variable to store the animation frame ID
-let animationFrameId;
-
-// Function to update parameters
-function updateParameters() {
-    a = parseFloat(document.getElementById('a').value);
-    k = parseFloat(document.getElementById('k').value);
-    h = parseFloat(document.getElementById('h').value);
-    g = parseFloat(document.getElementById('g').value);
-    gridSpacing = parseFloat(document.getElementById('gridSpacing').value);
-    w = Math.sqrt(g * k * Math.tanh(k * h));
-    draw();
-}
-
-// Calculate particle positions
-function particlePosition(x0, z0, t) {
-    // See "particle excursion" in
-    // <https://en.wikipedia.org/wiki/Airy_wave_theory#Table_of_wave_quantities>
-    const theta = k * x0 - w * t;
-    const x = x0 - a * Math.cosh(k * (z0 + h)) / Math.sinh(k * h) * Math.sin(theta);
-    const z = z0 + a * Math.sinh(k * (z0 + h)) / Math.sinh(k * h) * Math.cos(theta);
-    return { x, z };
-}
-
-// Animation function
-function draw() {
-    // Cancel the previous animation frame
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-    }
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const time = new Date().getTime() / 1000;
-
-    // Adjusted loop for grid spacing
-    for (let x0 = -8; x0 <= 8; x0 += gridSpacing) {
-        for (let z0 = -h; z0 <= 0; z0 += gridSpacing) {
-            const pos = particlePosition(x0, z0, time);
-            // Adjust position calculation to fit canvas
-            const canvasX = pos.x * 200 + canvas.width / 2;
-            const canvasZ = canvas.height - (pos.z + h) * 200;
-            ctx.beginPath();
-            ctx.arc(canvasX, canvasZ, 2, 0, 2 * Math.PI);
-            ctx.fill();
-        }
-    }
-    // Store the new animation frame ID
-    animationFrameId = requestAnimationFrame(draw);
-}
-
-// Event listeners for input elements
-document.getElementById('a').addEventListener('input', updateParameters);
-document.getElementById('k').addEventListener('input', updateParameters);
-document.getElementById('h').addEventListener('input', updateParameters);
-document.getElementById('g').addEventListener('input', updateParameters);
-document.getElementById('gridSpacing').addEventListener('input', updateParameters);
-
-// Initial draw
-draw();
-
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
