@@ -1,6 +1,78 @@
-canvas {
-    border: 1px solid black;
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: row; /* Side-by-side layout */
+    align-items: start; /* Align items to the start */
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+canvas {
+    border: 2px solid #555;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: calc(100% - 220px); /* Adjust width to leave space for controls */
+    height: auto; /* Auto-adjust height */
+}
+
 .controls {
-    margin: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Fixed width for controls */
+    margin-right: 20px; /* Space between controls and canvas */
+}
+
+.controls fieldset {
+    border: none;
+    margin-bottom: 10px;
+}
+
+.controls legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        align-items: center; /* Center align items */
+    }
+
+    .controls {
+        width: 100%; /* Full width for controls */
+        margin-right: 0; /* Remove margin-right */
+        margin-bottom: 20px; /* Add margin-bottom for spacing */
+    }
+
+    canvas {
+        max-width: 100%; /* Canvas takes full width */
+    }
 }
