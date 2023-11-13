@@ -9,7 +9,7 @@ The elliptical motion of individual water particles may be familiar to those who
 ## [Click here for the interactive animation](https://maresb.github.io/airy-wave/)
 
 <a href="https://maresb.github.io/airy-wave/">
-    <img src="animation.png" alt="Interactive animation" width="70%" />
+    <img src="animation.png" alt="Interactive animation" width="100%" />
 </a>
 
 ## Mathematical details
