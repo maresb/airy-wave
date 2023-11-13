@@ -8,6 +8,10 @@ The elliptical motion of individual water particles may be familiar to those who
 
 ## [Click here for the interactive animation](https://maresb.github.io/airy-wave/)
 
+<a href="https://maresb.github.io/airy-wave/">
+    <img src="animation.png" alt="Interactive animation" width="70%" />
+</a>
+
 ## Mathematical details
 
 In short, the velocity $v$ of a water wave is given by the dispersion relation
@@ -22,7 +26,6 @@ Special cases of this formula are the deep and shallow limits:
 
 $$v\approx\sqrt{\frac{g\lambda}{2\pi}} \textrm{ as } h\to\infty,$$
 $$v\approx\sqrt{gh} \textrm{ as } h\to0.$$
-
 
 ## Why are the dynamics determined by this dispersion relation?
 
