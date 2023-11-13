@@ -4,6 +4,8 @@ Visualize the fundamental plane-wave solutions to Airy's linear wave equation. T
 
 The movement of water that takes place under the wave's surface explains why water depth is such an important factor in determining wave velocity.
 
+The elliptical motion of individual water particles may be familiar to those who have snorkeled in shallow water.
+
 ## [Click here for the interactive animation](https://maresb.github.io/airy-wave/)
 
 ## Mathematical details
