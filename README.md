@@ -24,8 +24,10 @@ where $g$ is gravitational acceleration, $h$ is water depth, and $\lambda$ is th
 
 Special cases of this formula are the deep and shallow limits:
 
-$$v\approx\sqrt{\frac{g\lambda}{2\pi}} \textrm{ as } h\to\infty,$$
-$$v\approx\sqrt{gh} \textrm{ as } h\to0.$$
+$$\begin{align}
+    v &\approx \sqrt{\frac{g\lambda}{2\pi}} & \textrm{as } h &\to \infty, \\
+    v &\approx \sqrt{gh} & \textrm{as } h &\to 0.
+\end{align}$$
 
 ## Why are the dynamics determined by this dispersion relation?
 
