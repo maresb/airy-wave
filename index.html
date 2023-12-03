@@ -3,24 +3,51 @@
 <head>
     <title>Airy linear wave animation</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 </head>
 <body>
-    <form id="waveControls" class="controls">
-        <fieldset>
-            <legend>Wave Parameters</legend>
-            <label for="a">a:</label>
-            <input type="number" id="a" value="0.1" step="0.01"><br>
-            <label for="k">k:</label>
-            <input type="number" id="k" value="2" step="0.2"><br>
-            <label for="h">h:</label>
-            <input type="number" id="h" value="0.6" step="0.1"><br>
-            <label for="g">g:</label>
-            <input type="number" id="g" value="9.8" step="0.1"><br>
-            <label for="gridSpacing">Grid Spacing:</label>
-            <input type="number" id="gridSpacing" value="0.06" step="0.01"><br>
-        </fieldset>        
-    </form>
-    <canvas id="waveCanvas" width="600" height="400"></canvas>
+    <div id="waveContainer">
+        <form id="waveControls" class="controls">
+            <fieldset>
+                <legend>Wave Parameters</legend>
+                <label for="a">Amplitude <span class="math">a\,(m)</span>:</p></label>
+                <input type="number" id="a" value="0.1" step="0.01"><br>
+                <label for="k">Wavenumber <span class="math">k\,(m^{-1})</span>:</label>
+                <input type="number" id="k" value="2" step="0.2"><br>
+                <label for="h">Water depth <span class="math">h\,(m)</span>:</label>
+                <input type="number" id="h" value="0.6" step="0.1"><br>
+                <label for="g">Gravity <span class="math">g\,(m/s^2)</span>:</label>
+                <input type="number" id="g" value="9.8" step="0.1"><br>
+                <label for="gridSpacing">Grid Spacing:</label>
+                <input type="number" id="gridSpacing" value="0.06" step="0.01"><br>
+            </fieldset>        
+        </form>
+        <canvas id="waveCanvas" width="600" height="400"></canvas>
+    </div>
+    <div id="parametersPanel" class="parameters-panel">
+        <h3>Dependent Parameters</h3>
+        <p>Velocity <span class="math" id="valueV"></span> m/s</p>
+        <p>Wavelength <span id="valueLambda"></span> m</p>
+        <p>Angular frequency <span id="valueOmega"></span> rad/s</p>
+        <p><span id="valueHOverLambda"></span></p>
+        <p><span id="valueKH"></span></p>
+        <p><span id="valueTanhKH"></span></p>
+    </div>
+    <div id="graphContainer">
+        <canvas id="graphCanvas" width="400" height="400"></canvas>
+        <div id="xAxisLabel" class="axis-label math">kh</div>
+        <div id="yAxisLabel" class="axis-label math">\tanh(kh)</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          document.querySelectorAll('.math').forEach(function(node) {
+            katex.render(node.textContent, node, {
+              throwOnError: false
+            });
+          });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

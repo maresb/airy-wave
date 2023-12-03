@@ -11,7 +11,8 @@ body {
     color: #333;
     display: flex;
     flex-direction: row; /* Side-by-side layout */
-    align-items: start; /* Align items to the start */
+    flex-wrap: wrap; /* Wrap items to new line if not enough space */
+    align-items: start;
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
@@ -20,8 +21,6 @@ body {
 canvas {
     border: 2px solid #555;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: calc(100% - 220px); /* Adjust width to leave space for controls */
-    height: auto; /* Auto-adjust height */
 }
 
 .controls {
@@ -30,7 +29,7 @@ canvas {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px; /* Fixed width for controls */
+    width: 250px; /* Fixed width for controls */
     margin-right: 20px; /* Space between controls and canvas */
 }
 
@@ -47,7 +46,6 @@ canvas {
 label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
 input[type="number"] {
@@ -76,3 +74,68 @@ input[type="number"] {
         max-width: 100%; /* Canvas takes full width */
     }
 }
+
+#waveCanvas {
+    max-width: calc(100% - 220px); /* Adjust width to leave space for controls */
+    height: auto; /* Auto-adjust height */
+}
+
+#graphCanvas {
+    position: relative; /* Necessary for the absolute positioning of axis labels */
+    margin-top: 20px; /* Add space between the wave canvas and the graph */
+}
+
+#waveContainer {
+    display: flex;
+    flex-direction: row; /* Set elements side-by-side */
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+}
+
+.axis-label {
+    position: absolute;
+    color: #000;
+    font-size: 16px;
+}
+
+#xAxisLabel {
+    bottom: -60px; /* Adjust as necessary to place below the canvas */
+    right: 0;
+    width: 100%; /* Ensure the label is centered with respect to the canvas width */
+    text-align: center; /* Center the text within the label's width */
+}
+
+#yAxisLabel {
+    top: 50%;
+    left: -20px; /* Adjust as necessary to place to the left of the canvas */
+    transform: translate(-50%, -50%) rotate(-90deg); /* Adjust the rotation point to the label's center */
+    transform-origin: center; /* Ensures the rotation is around the center of the label */
+}
+
+#graphContainer {
+    position: relative; /* This makes it the positioning context for its children */
+    width: 400px; /* Set to match the width of your canvas */
+    height: 400px; /* Set to match the height of your canvas */
+    margin: 40px; /* To accommodate axis labels */
+}
+
+.parameters-panel {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 300px; /* Adjust as needed */
+}
+
+.parameters-panel h3 {
+    margin-bottom: 10px;
+}
+
+.parameters-panel p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
